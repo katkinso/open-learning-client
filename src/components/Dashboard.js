@@ -9,7 +9,8 @@ import SessionList from './partials/SessionList'
 
 
 class Dashboard extends Component {
-
+  _isMounted = false;
+  
   constructor(props) {
 
       super(props);
