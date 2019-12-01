@@ -10,7 +10,7 @@ import SessionList from './partials/SessionList'
 
 class Dashboard extends Component {
   _isMounted = false;
-  
+
   constructor(props) {
 
       super(props);
@@ -43,7 +43,6 @@ class Dashboard extends Component {
   componentDidMount() {
     this._isMounted = true;
     
-    if (this._isMounted) { //if
         api.me((err,res) => {
           if (!err){
               const user = res.data;
@@ -55,18 +54,20 @@ class Dashboard extends Component {
 
               user.nextSession = user.sessions[0]; //latest date
               user.sessions = userSessions;
-
-              this.setState({user})
+              if (this._isMounted) { //if
+                this.setState({user})
+              }
           }
         })
 
         api.sessions('info', (err,res) => {
           if (!err){
               const sessions = res.data;
-              this.setState({sessions})
+              if (this._isMounted) { //if
+                this.setState({sessions})
+              }
           }
         })
-      }//if
   }
 
   componentWillUnmount() {
