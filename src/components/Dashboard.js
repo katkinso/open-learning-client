@@ -42,29 +42,30 @@ class Dashboard extends Component {
   componentDidMount() {
     this._isMounted = true;
     
-    api.me((err,res) => {
-      if (!err){
-          const user = res.data;
-          const userSessions = []
+    if (this._isMounted) { //if
+        api.me((err,res) => {
+          if (!err){
+              const user = res.data;
+              const userSessions = []
 
-          user.sessions.map((session) => {
-            userSessions.push(session.id);
-          })
+              user.sessions.map((session) => {
+                userSessions.push(session.id);
+              })
 
-          user.nextSession = user.sessions[0]; //latest date
-          user.sessions = userSessions;
+              user.nextSession = user.sessions[0]; //latest date
+              user.sessions = userSessions;
 
-          this.setState({user})
-      }
-    })
+              this.setState({user})
+          }
+        })
 
-    api.sessions('info', (err,res) => {
-      if (!err){
-          const sessions = res.data;
-          this.setState({sessions})
-      }
-    })
-
+        api.sessions('info', (err,res) => {
+          if (!err){
+              const sessions = res.data;
+              this.setState({sessions})
+          }
+        })
+      }//if
   }
 
   componentWillUnmount() {
@@ -84,7 +85,6 @@ class Dashboard extends Component {
 
 
  render(){
-    this._isMounted = false;
 
     const { user, sessions, notification } = this.state;
 
