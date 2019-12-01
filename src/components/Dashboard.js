@@ -35,29 +35,40 @@ class Dashboard extends Component {
       //   })
       // }
 
-      api.me((err,res) => {
-        if (!err){
-            const user = res.data;
-            const userSessions = []
+      
 
-            user.sessions.map((session) => {
-              userSessions.push(session.id);
-            })
+  }
 
-            user.nextSession = user.sessions[0]; //latest date
-            user.sessions = userSessions;
+  componentDidMount() {
+    this._isMounted = true;
+    
+    api.me((err,res) => {
+      if (!err){
+          const user = res.data;
+          const userSessions = []
 
-            this.setState({user})
-        }
-      })
+          user.sessions.map((session) => {
+            userSessions.push(session.id);
+          })
 
-      api.sessions('info', (err,res) => {
-        if (!err){
-            const sessions = res.data;
-            this.setState({sessions})
-        }
-      })
+          user.nextSession = user.sessions[0]; //latest date
+          user.sessions = userSessions;
 
+          this.setState({user})
+      }
+    })
+
+    api.sessions('info', (err,res) => {
+      if (!err){
+          const sessions = res.data;
+          this.setState({sessions})
+      }
+    })
+
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   logout(){
