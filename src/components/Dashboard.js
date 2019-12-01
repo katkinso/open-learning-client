@@ -84,6 +84,7 @@ class Dashboard extends Component {
 
 
  render(){
+    this._isMounted = false;
 
     const { user, sessions, notification } = this.state;
 
@@ -99,4 +100,4 @@ class Dashboard extends Component {
   }
 };
 
-export default Dashboard;
+export default withRouter(Dashboard);
