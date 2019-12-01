@@ -28,12 +28,12 @@ class Dashboard extends Component {
           notification: "Remember, Thursday is a holiday! Don’t forget to submit your answers to the latest survey"
       };     
 
-      if (!utils.checkCookie()) {
-          props.history.push({
-          pathname: '/authenticate',
-          state: { error: "access denied" }
-        })
-      }
+      // if (!utils.checkCookie()) {
+      //     props.history.push({
+      //     pathname: '/authenticate',
+      //     state: { error: "access denied" }
+      //   })
+      // }
 
       api.me((err,res) => {
         if (!err){
