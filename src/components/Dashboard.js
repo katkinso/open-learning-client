@@ -68,6 +68,8 @@ class Dashboard extends Component {
               }
           }
         })
+
+        console.log(user)
   }
 
   componentWillUnmount() {
