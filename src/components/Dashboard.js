@@ -69,7 +69,7 @@ class Dashboard extends Component {
           }
         })
 
-        console.log(user)
+        // console.log(user)
   }
 
   componentWillUnmount() {
@@ -89,6 +89,8 @@ class Dashboard extends Component {
 
 
  render(){
+
+  console.log(user)
 
     const { user, sessions, notification } = this.state;
 
